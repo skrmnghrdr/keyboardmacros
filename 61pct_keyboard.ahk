@@ -46,10 +46,15 @@ CapsLock & k::Down
 CapsLock & j::Left
 CapsLock & l::Right
 
-;useful function keys here as well,
-LAlt & 0::Send "{Volume_Mute}"
-LAlt & -::Send "{Volume_Up}" 
-LAlt & =::Send "{Volume_Down}"
+;here are the replacements for windows shortcut so 
+;you would not lock the computer
+LWin & /::Send("{LWin down}{Up}")
+LWin & RAlt::Send("{LWin down}{Left}")
+LWin & AppsKey::Send("{LWin down}{Down}")
+LWin & RCtrl::Send("{LWin down}{Right}")
+
+
+
 
 ;this one is just alt f4 but just alt 4
 LAlt & 4::Send("{Alt down}{F4}{Alt up}")
