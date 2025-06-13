@@ -1,4 +1,4 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 
 ;macro workaround for 60% keybaord
 ;to write slash
@@ -13,6 +13,7 @@ CapsLock & a::Send "^a"
 ;disable caps lock unless you want it to
 ;press shift + capslock will make caps do regular caps things
 CapsLock::return
+
 
 ;old linux habits never die
 LControl  & e::Send "{End}"
@@ -54,7 +55,44 @@ LWin & AppsKey::Send("{LWin down}{Down}")
 LWin & RCtrl::Send("{LWin down}{Right}")
 
 
-
+;useful function keys here as well,
+LAlt & 0::Send "{Volume_Mute}"
+LAlt & =::Send "{Volume_Up}" 
+LAlt & -::Send "{Volume_Down}"
 
 ;this one is just alt f4 but just alt 4
 LAlt & 4::Send("{Alt down}{F4}{Alt up}")
+
+;custom ones to maximize laziness
+CapsLock & g::Send "{Enter}"
+
+
+;editted this for a test 40% keybaord
+CapsLock & o::[ 
+;;accounts for caps shift o { as well and vice versa
+CapsLock & p::]
+
+;number keys to simulate the 40% layout as we
+<!q::1
+<!w::2
+<!e::3
+<!r::4
+<!t::5
+<!y::6
+<!u::7
+<!i::8
+<!o::9
+<!p::0
+
+;sending the hyphen and underscore to k
+<!k::Send("{vkBD}")
+<!<+k::Send("_")
+
+;sending the equals and plus to L
+<!l::Send("=")
+<!+l::Send("{vk6B}")
+
+;this is just the backspace alt to be a normal backspace
+<!Backspace:: Backspace
+
+
