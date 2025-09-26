@@ -16,37 +16,41 @@
 #include QMK_KEYBOARD_H
 #include "../../../lib/rdr_lib/rdr_common.h"
 
+enum custom_keycodes {
+    MY_ALT = SAFE_RANGE,
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT_tkl_ansi(
+    [0] = LAYOUT_tkl_ansi( //defualt key layer 
         QK_GESC, KC_1,     KC_2,     KC_3,      KC_4,      KC_5,     KC_6,     KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,
         KC_TAB,  KC_Q,     KC_W,     KC_E,      KC_R,      KC_T,     KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,
         MO(1), KC_A,     KC_S,     KC_D,      KC_F,      KC_G,     KC_H,     KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,
         KC_LSFT, KC_Z,     KC_X,     KC_C,      KC_V,      KC_B,     KC_N,     KC_M,    KC_COMM,  KC_DOT,             KC_SLSH,            KC_RSFT,
-        KC_LCTL, KC_LGUI,  MO(2),                        KC_SPC,                                KC_RALT,  KC_APP,   KC_RCTL,  MO(2)
+        KC_LCTL, KC_LGUI,  MO(2),                        KC_SPC,                                KC_RALT,  KC_APP,   KC_RCTL,  MO(3)
     ),
-    [1] = LAYOUT_tkl_ansi(
-        QK_GESC, KC_1,     KC_2,     KC_3,      KC_4,      KC_5,     KC_6,     KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,
+    [1] = LAYOUT_tkl_ansi( //caps layer
+        QK_GESC, KC_1,     KC_2,     KC_3,      KC_4,      KC_5,     KC_6,     KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_DEL,
         KC_TAB,  KC_Q,     KC_W,     KC_E,      KC_R,      KC_T,     KC_Y,     KC_U,    KC_UP,     KC_LBRC,     KC_RBRC,     KC_LBRC,  KC_RBRC,  TG(0),
-        KC_NO, KC_A,     KC_S,     KC_D,      KC_F,      KC_ENT,     KC_H,     KC_LEFT,    KC_DOWN,     KC_RGHT,     KC_SCLN,  KC_QUOT,            KC_ENT,
-        KC_LSFT, KC_Z,     KC_X,     KC_C,      KC_V,      KC_B,     KC_N,     KC_M,    KC_COMM,  KC_DOT,             KC_SLSH,            KC_RSFT,
+        KC_NO, LCTL(KC_A),     KC_S,     KC_D,      KC_PGDN,      KC_ENT,     KC_H,     KC_LEFT,    KC_DOWN,     KC_RGHT,     KC_SCLN,  KC_QUOT,            KC_ENT,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,      KC_V,      KC_PGUP,     KC_N,     KC_M,    KC_COMM,  KC_DOT,             KC_SLSH,            KC_RSFT,
         KC_LCTL, KC_LALT,  KC_LGUI,                        KC_SPC,                                KC_RGUI,  KC_APP,   KC_RCTL,  MO(3)
     ),
-    [2] = LAYOUT_tkl_ansi(
-        KC_GRV,  KC_F1,    KC_F2,    KC_F3,     KC_F4,     KC_F5,    KC_F6,    KC_F7,   KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   U_EE_CLR,
+    [2] = LAYOUT_tkl_ansi( //alt layer
+        KC_GRV,  KC_F1,    KC_F2,    KC_F3,     LALT(KC_F4),     KC_F5,    KC_F6,    KC_F7,   KC_F8,    KC_F9,    KC_MUTE,   KC_VOLD,   KC_VOLU,   U_EE_CLR,
         KC_TAB,  KC_1,  KC_2,  KC_3,   KC_4,    KC_5,  KC_6,  KC_7, KC_8,     KC_9,     KC_0,     RGB_SPD,  RGB_SPI,  TG(0),
         KC_NO, TO(0),    TO(1),    KC_D,      KC_F,      KC_INS,   KC_HOME,  KC_PGUP, KC_MINS,     KC_EQL,     RGB_HUD,  RGB_HUI,            KC_ENT,
         KC_LSFT, LOGO_MOD, LOGO_HUI, RGB_SAD,   RGB_SAI,   KC_DEL,   KC_END,   KC_PGDN, RGB_VAD,  RGB_VAI,            KC_UP,              QK_BAT,
-        KC_LCTL, QK_WLO,   KC_NO,                        RGB_RTOG,                              KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_NO
+        KC_LCTL, KC_LGUI,   KC_NO,                        KC_SPC,                              KC_LEFT,  KC_DOWN,  KC_RGHT,  TG(3)
     ),
-    [3] = LAYOUT_tkl_ansi(
-        TG(0),  KC_BRID,  KC_BRIU,  KC_MCTL,   KC_LPAD,   KC_5,     KC_6,     KC_MPRV, KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  U_EE_CLR,
-        KC_TAB,  MD_BLE1,  MD_BLE2,  MD_BLE3,   MD_24G,    KC_PSCR,  KC_SCRL,  KC_PAUS, KC_I,     KC_O,     KC_P,     RGB_SPD,  RGB_SPI,  RGB_MOD,
-        KC_NO, TO(0),    TO(1),    KC_D,      KC_F,      KC_INS,   KC_HOME,  KC_PGUP, KC_K,     KC_PGUP,  RGB_HUD,  RGB_HUI,            KC_ENT,
-        KC_LSFT, LOGO_MOD, LOGO_HUI, RGB_SAD,   RGB_SAI,   KC_DEL,   KC_END,   KC_PGDN, RGB_VAD,  RGB_VAI,            KC_UP,              QK_BAT,
-        KC_LCTL, KC_LALT,  KC_LGUI,                        RGB_RTOG,                              KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_NO
+    [3] = LAYOUT_tkl_ansi( //fn key layer (keyboard things)
+        QK_GESC,  KC_1,     KC_2,     KC_3,      KC_4,      KC_5,     KC_6,     KC_MPRV, MD_24G,  MD_BLE3,  TG(0),  MD_BLE1,  MD_BLE2,  U_EE_CLR,
+        KC_TAB,  KC_Q,     KC_W,     KC_E,      KC_R,      KC_T,     KC_Y,  KC_PAUS, KC_I,     TG(0),     KC_P,     RGB_SPD,  RGB_SPI,  RGB_MOD,
+        RGB_RTOG, KC_A,     KC_S,     KC_D,      KC_F,      KC_G,   KC_H,  KC_J, KC_K,     KC_PGUP,  RGB_HUD,  RGB_HUI,            KC_ENT,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,      KC_V,      KC_B,   KC_END,   KC_PGDN, RGB_VAD,  RGB_VAI,            RGB_SAI,              QK_BAT,
+        KC_LCTL, KC_LGUI,  KC_LALT,                        KC_SPC,                              LOGO_MOD,  LOGO_HUI,  RGB_SAD,  KC_NO
     )
 };
+//KC_Q,     KC_W,     KC_E,      KC_R,      KC_T,     KC_Y,
 
 
 void ctrl_hotkey(uint16_t keycode)
@@ -58,84 +62,51 @@ void ctrl_hotkey(uint16_t keycode)
     return;
 }
 
-void win_key_hotkey(uint16_t keycode)
-{
-    uint8_t mods = get_mods();
-    clear_mods(); 
-    register_mods(MOD_BIT(KC_LGUI));
-    tap_code(keycode);
-    unregister_mods(MOD_BIT(KC_LGUI));
-    set_mods(mods);
-    return;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t * record)
 {
     Usb_Change_Mode_Delay = 0;    
     Usb_Change_Mode_Wakeup = false;
-
-    if (!record->event.pressed)
-    {
-        goto END;
-    }
-
+    
     bool ctrl_held = get_mods() & MOD_BIT(KC_LCTL);
-    bool win_held = get_mods() & MOD_BIT(KC_LGUI);
     //bool alt_held = get_mods() & MOD_BIT(KC_LALT);
-    //bool shift_held = get_mods() & MOD_BIT(KC_LSFT);
-
+    // CTRL hotkeys
     switch(keycode)
     {
+        //! begin filter
+        //alt keys first up here
+        //! end filter
+
+
+
+        /* end alt keyes */
         case KC_E:
             if(ctrl_held)
             {
                 ctrl_hotkey(KC_END);
-                return false; //dont' return E bro
+                return false; // don't send E
             }
-
-/* KEYBOARD SECOND ROW BEGIN*/
+            /*
+            if (record->event.pressed) 
+            {
+                //! alt e
+                if (get_mods() & MOD_BIT(KC_LALT)) 
+                {
+                    tap_code(KC_3);
+                    return false; // Prevent KC_Q from being sent
+                }
+            } 
+            break;
+            */
+           
         case KC_A:
             if(ctrl_held)
             {
                 ctrl_hotkey(KC_HOME);
-                return false;
-            }
-            break;
-
-
-        case KC_J: 
-            if(win_held)
-            {
-                win_key_hotkey(KC_LEFT);
-                return false;
-            }
-            break;
-        case KC_K: 
-            if(win_held)
-            {
-                win_key_hotkey(KC_DOWN);
-                return false;
-            }
-            break;
-        case KC_L: 
-            if(win_held)
-            {
-                win_key_hotkey(KC_RGHT);
-                return false;
-            }
-            break;
-        case KC_I: 
-            if(win_held)
-            {
-                win_key_hotkey(KC_UP);
-                return false;
+                return false; // don't send A
             }
             break;
     }
 
-
-
-END:
     return Key_Value_Dispose(keycode, record);
 }
 
