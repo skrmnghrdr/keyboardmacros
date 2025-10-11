@@ -32,3 +32,5 @@
 
 #define TRANSIENT_EEPROM_SIZE 4096
 
+#define TAPPING_TERM 100
+
