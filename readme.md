@@ -20,3 +20,22 @@ a directory (like a flash drive would appear)
 drag and drop the .bin over there and it would install automatically
 
 *profit?
+
+
+Instructions from https://github.com/Enilenis/CIDOO-QK61/tree/main
+
+pasted here for convenience:
+
+CIDOO QK61
+A customizable 61key keyboard.
+
+Keyboard Maintainer: CIDOO
+Hardware Supported: CIDOO QK61 PCB with es32fs026 (fs026) microcontroller
+Make example for this keyboard (after setting up your build environment):
+
+make cidoo/qk61:via
+See the build environment setup and the make instructions for more information. Brand new to QMK? Start with our Complete Newbs Guide.
+
+Firmware
+To flash firmware, enter bootloader mode by holding the Esc key (matrix position 0,0) while plugging in the keyboard.
+Place compiled .bin file onto the keyboard’s USB storage — the device will automatically reboot and apply the new firmware.
